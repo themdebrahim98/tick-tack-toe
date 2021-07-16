@@ -1,0 +1,214 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+:root {
+  --cellsize: 100px;
+
+  --marksize: calc(var(--cellsize) * 0.9);
+}
+body {
+  margin: 0;
+  overflow-y: hidden;
+ 
+}
+
+.Heading{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: auto;
+  color: #1600de;
+  font-size: 25px;
+  font-weight: 900;
+  text-shadow: 4px 1px 2px rgb(0, 255, 242);
+  
+  background-image: linear-gradient(132deg, #F4D03F 0%, #16A085 100%);
+  
+ 
+}
+.board {
+  background: url('img/F6Ew8.png');
+  display: grid;
+  margin-top: -99px;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-content: center;
+  /* justify-items: center;
+  align-items: center; */
+  grid-template-columns: repeat(3, auto);
+  position: absolute;
+}
+.cell {
+  width: var(--cellsize);
+  height: var(--cellsize);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+
+  border: 1px solid wheat;
+}
+
+.cell.x {
+  cursor: not-allowed;
+}
+
+.cell.x::after,
+.cell.x::before {
+  background-color: #00DBDE;
+  background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+  
+}
+
+.cell.circle::before {
+  background-color: #52ACFF;
+  background-image: linear-gradient(180deg, #52ACFF 25%, #FFE32C 100%);
+  }
+
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after {
+  background-color: lightgray;
+}
+
+.board.circle .cell:not(.x):not(.circle):hover::after,
+.board.circle .cell:not(.x):not(.circle):hover::before {
+  background-color: lightgray;
+}
+.cell.circle {
+  cursor: not-allowed;
+}
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+  border-top: none;
+}
+
+.cell:nth-child(3n + 1) {
+  border-left: none;
+}
+
+.cell:nth-child(3n + 3) {
+  border-right: none;
+}
+
+.cell:nth-child(7),
+.cell:last-child,
+.cell:nth-child(8) {
+  border-bottom: none;
+}
+
+.cell.x::after,
+.cell.x::before,
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.x .cell:not(.x):not(.circle):hover::before {
+  content: "";
+  width: calc(var(--cellsize) * 0.15);
+  height: var(--marksize);
+  position: absolute;
+}
+
+.cell.x::before,.board.x .cell:not(.x):not(.circle):hover::before {
+  transform: rotate(45deg);
+}
+.cell.x::after,.board.x .cell:not(.x):not(.circle):hover::after {
+  transform: rotate(-45deg);
+}
+
+.cell.circle::after,
+.cell.circle::before,
+.board.circle .cell:not(.x):not(.circle):hover::after,
+.board.circle .cell:not(.x):not(.circle):hover::before {
+  content: "";
+  position: absolute;
+  width: calc(var(--marksize));
+  height: calc(var(--marksize));
+  border-radius: 50%;
+}
+.cell.circle::before,
+.board.circle .cell:not(.x):not(.circle):hover::before {
+  width: calc(var(--marksize));
+  height: calc(var(--marksize));
+}
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::after {
+  width: calc(var(--marksize) * 0.7);
+  height: calc(var(--marksize) * 0.7);
+  background-color: white;
+}
+
+.winner {
+  display: flex;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+
+  align-items: center;
+  justify-content: center;
+  background-color: #52ACFF;
+background-image: linear-gradient(180deg, #52ACFF 25%, #FFE32C 100%);
+
+  font-size: 45px;
+  flex-direction: column;
+}
+.winner button:hover {
+ 
+}
+.winner button {
+  font-size: 25px;
+  background: rgb(0,0,0,.5);
+  color: white;
+  border: 1px solid white;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 12px;
+  margin-top: -70px;
+  /* color: white;
+  margin: 12px;
+  padding: 12px;
+  border-radius: 15px;
+  background-color: #21D4FD;
+background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+box-shadow: 2px 4px 2px powderblue;
+margin-top: 25px;
+transition: all .3s ease; */
+
+  
+}
+.winner.show {
+  display: flex;
+  background: rgba(0,0,0,.4);
+
+}
+
+.result{
+  background-color: #FFE53B;
+background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);
+padding: 12px;
+border-radius: 15px;
+font-weight: 900;
+box-shadow: 2px 4px 2px white;
+
+}
+.cutting-box{
+  position: relative;
+  left: 60px;
+  width: 30px;
+  height: 400px;
+  background-color: red;
+  transform: rotate(-45deg);
+}
+
+.cell.circle.clrchange,.cell.clrchange{
+  background-color: green;
+}
